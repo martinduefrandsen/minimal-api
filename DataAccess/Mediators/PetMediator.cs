@@ -3,7 +3,7 @@ using DataAccess.Providers;
 
 namespace DataAccess.Mediators;
 
-public class PetMediator
+public class PetMediator : IMediator
 {
     private readonly IRelationalDatabaseProvider _database;
 

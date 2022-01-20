@@ -17,24 +17,20 @@ public class MySqlProvider : IRelationalDatabaseProvider
     public async Task<IEnumerable<T>> LoadData<T, TU>(
         string storedProcedure,
         TU parameters,
-        string connectionId = "Default")
+        string connectionId = "Mysql")
     {
         using IDbConnection connection = new MySqlConnection(_config.GetConnectionString(connectionId));
         
-        var sql = await File.ReadAllTextAsync(storedProcedure);
-        
-        return await connection.QueryAsync<T>(sql, parameters, commandType: CommandType.StoredProcedure);
+        return await connection.QueryAsync<T>(storedProcedure, parameters, commandType: CommandType.StoredProcedure);
     }
 
     public async Task SaveData<T>(
         string storedProcedure,
         T parameters,
-        string connectionId = "Default")
+        string connectionId = "Mysql")
     {
         using IDbConnection connection = new MySqlConnection(_config.GetConnectionString(connectionId));
 
-        var sql = await File.ReadAllTextAsync(storedProcedure);
-        
-        await connection.ExecuteAsync(sql, parameters, commandType: CommandType.StoredProcedure);
+        await connection.ExecuteAsync(storedProcedure, parameters, commandType: CommandType.StoredProcedure);
     }
 }
