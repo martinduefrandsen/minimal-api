@@ -1,0 +1,8 @@
+﻿DELIMITER //
+
+CREATE PROCEDURE sp_Pet_GetAll()
+BEGIN
+    SELECT *  FROM Pets ORDER BY Id DESC;
+END //
+
+DELIMITER ;
